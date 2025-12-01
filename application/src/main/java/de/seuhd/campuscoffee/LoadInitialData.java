@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
+import de.seuhd.campuscoffee.domain.model.User;
 
 import java.util.List;
 
@@ -28,10 +29,10 @@ class LoadInitialData implements InitializingBean {
         //TODO: Uncomment after user domain object service are implemented
         log.info("Deleting existing data...");
         posService.clear();
-        //userService.clear();
+        userService.clear();
         log.info("Loading initial data...");
-        //List<User> users = TestFixtures.createUsers(userService);
-        //log.info("Created {} users.", users.size());
+        List<User> users = TestFixtures.createUsers(userService);
+        log.info("Created {} users.", users.size());
         List<Pos> posList = TestFixtures.createPosFixtures(posService);
         log.info("Created {} POS.", posList.size());
         log.info("Initial data loaded successfully.");

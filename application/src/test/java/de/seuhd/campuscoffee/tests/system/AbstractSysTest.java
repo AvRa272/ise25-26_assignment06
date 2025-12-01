@@ -12,6 +12,7 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
+import de.seuhd.campuscoffee.api.mapper.UserDtoMapper;
 
 import java.util.List;
 
@@ -48,8 +49,8 @@ public abstract class AbstractSysTest {
     protected PosDtoMapper posDtoMapper;
 
     //TODO: Uncomment after user DTO mapper is implemented
-    //@Autowired
-    //protected UserDtoMapper userDtoMapper;
+    @Autowired
+    protected UserDtoMapper userDtoMapper;
 
     @LocalServerPort
     private Integer port;
@@ -58,7 +59,7 @@ public abstract class AbstractSysTest {
     void beforeEach() {
         posService.clear();
         //TODO: Uncomment after user service is implemented
-        //userService.clear();
+        userService.clear();
         RestAssured.baseURI = "http://localhost:" + port;
     }
 
